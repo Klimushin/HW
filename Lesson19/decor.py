@@ -6,11 +6,11 @@ class Employee:
     def __new__(cls, *args, **kwargs):
         return object.__new__(cls)
 
-    def __init__(self, name, mail, salary):
+    def __init__(self, name, surname, mail, salary):
         self.name = name
+        self.surname = surname
         self.mail = mail
         self.salary = salary
-        # self.days = days
 
     def work(self):
         return f'I come to the office.'
@@ -25,8 +25,6 @@ class Employee:
 
         diff = (now - month_start).days + 1
 
-        # print(now, month_start, diff)
-
         day_count = 0
 
         for day in range(diff):
@@ -40,6 +38,10 @@ class Employee:
         salary = self.salary * day
         return salary
 
+    @property
+    def string(self):
+        return f" {self.__class__.__name__}  {self.name}  {self.surname}  {int(self.day())}"
+
 
 class Recruiter(Employee):
     def work(self):
@@ -50,6 +52,10 @@ class Recruiter(Employee):
 
 
 class Programmer(Employee):
+    def __init__(self, tech_stack, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.tech_stack = tech_stack
+
     def work(self):
         return f'I come to the office and start to coding.'
 
@@ -58,10 +64,8 @@ class Programmer(Employee):
 
 
 if __name__ == '__main__':
-    vasya = Recruiter(name='Vasya', mail='123@1.com', salary=50)
-    vasya2 = Programmer(name='Vasya2', mail='1234@1.com', salary=50)
-    marina = Programmer(name='marina', mail='12345@1.com', salary=60)
-    salary_Vasya2 = vasya2.check_salary(50)
-    print(salary_Vasya2)
-    print(str(vasya2.check_salary))
-    print(marina.work())
+    vasya = Recruiter(name='Vasya', surname='Pupkin', mail='123@1.com', salary=50)
+    vasya2 = Programmer(name='Vasya2', surname='Pupkino', mail='1234@1.com', salary=50, tech_stack=5)
+    marina = Programmer(name='marina', surname='Pupkina', mail='345@1.com', salary=60, tech_stack=6)
+
+    print(vasya.string)

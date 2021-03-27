@@ -12,15 +12,15 @@ buzz = int(input('Input second number:'))
 n = int(input('Input third number:'))
 x = 1
 
-for x in range(1, 1+n):
+for x in range(1, 1 + n):
     if x % fizz == 0 and x % buzz == 0:
-        print("FB", end = " ")
+        print("FB", end=" ")
     elif x % fizz == 0:
-        print('F', end = " ")
+        print('F', end=" ")
     elif x % buzz == 0:
-        print('B', end = " ")
+        print('B', end=" ")
     else:
-        print(x, end = " ")
+        print(x, end=" ")
 
 # Введены числа 2, 5, 18
 # Вывод должен быть таким:
